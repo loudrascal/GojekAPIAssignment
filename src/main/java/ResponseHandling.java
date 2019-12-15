@@ -7,9 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ResponseHandling {
-    int responseCode =0;
-    String url="",exceptionType="";
-    String response="";
+    private int responseCode =0;
+    private String url="",exceptionType="";
+    private String response="";
 
     public int getResponseCode() {
         return responseCode;
