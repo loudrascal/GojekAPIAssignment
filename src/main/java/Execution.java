@@ -1,9 +1,7 @@
-import io.restassured.specification.RequestSpecification;
 
 import java.io.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class Execution {
 
@@ -21,8 +19,8 @@ public class Execution {
                  else if((firstapi==null && secondapi!=null) ||(firstapi!=null && secondapi==null) ){
                     throw new Exception("Both files does not have same number of requests.");
                  }
-                 HitAPIs testcase = new HitAPIs(firstapi,secondapi);
-                 executor.execute(testcase);
+                 HitAPIs testCase = new HitAPIs(firstapi,secondapi);
+                 executor.execute(testCase);
              }
         }catch (FileNotFoundException e){
             System.out.println("Files not found at target location Please provide correct inputs\n"+e.getMessage()+"\n Exiting the Program");
