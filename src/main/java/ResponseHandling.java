@@ -1,6 +1,3 @@
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
