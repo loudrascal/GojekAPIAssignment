@@ -1,10 +1,12 @@
 package library.model;
-
+/*
+Custom class for containing the response
+ */
 public class APIResponse {
-    private int responseCode;
-    private String exceptionType;
-    private String response;
-    private String url;
+    private int responseCode=0;
+    private String exceptionType="";
+    private String response="";
+    private String url="";
 
     public int getResponseCode() {
         return responseCode;

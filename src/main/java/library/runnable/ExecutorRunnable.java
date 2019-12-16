@@ -2,13 +2,9 @@ package library.runnable;
 
 import library.Wrapper;
 import library.contract.IComparator;
-import library.exception.InvalidFileInputException;
 import library.impl.ComparatorImpl;
-import library.utils.AppUtils;
 
-
-import java.io.*;
-
+//Multithreaded class for running the execution in parallel
 public class ExecutorRunnable implements Runnable {
 
     private IComparator comparator;
@@ -23,6 +19,6 @@ public class ExecutorRunnable implements Runnable {
     public void run() {
         Wrapper wrapper = comparator.getData(url1, url2);
         String result = (comparator.compare(wrapper.getS(), wrapper.getT())) ? " equals " : " not equals ";
-        System.out.println(url1 + result + url1);
+        System.out.println(url1 + result + url2);
     }
 }

@@ -10,24 +10,33 @@ import library.model.APIResponse;
 import library.utils.JsonUtils;
 import java.io.File;
 
-
 public class ComparatorImpl implements IComparator<APIResponse, APIResponse> {
-
 
     @Override
     public boolean compare(APIResponse response1, APIResponse response2) {
-        if (response1.getExceptionType().equals(response2.getExceptionType())) return true;
+
+        if (!(response1.getExceptionType().equals(response2.getExceptionType()))) return false;
+    //  System.out.println("exception tpe is same");
         if (response1.getResponseCode() != response2.getResponseCode()) return false;
+    //  System.out.println("response code is same");
+        if(response1.getResponse().equals("")&&response2.getResponse().equals(""))
+            return true;
 
-        JsonParser parser = new JsonParser();
-        JsonElement json1 = parser.parse(response1.getResponse());
-        JsonElement json2 = parser.parse(response2.getResponse());
-
-        if (json1.isJsonObject() && json2.isJsonObject()) {
-            return JsonUtils.compareJSON(json1, json2);
-        } else {
-            return false;
+        //compare the 2 responses of the URL, if the response are not JSON then we are comparing using String comparison
+        //instead of throwing exception
+        if(JsonUtils.isJSONObject(response1.getResponse())){
+            if(JsonUtils.isJSONObject(response2.getResponse())) {
+                JsonParser parser = new JsonParser();
+                JsonElement json1 = parser.parse(response1.getResponse());
+                JsonElement json2 = parser.parse(response2.getResponse());
+                return JsonUtils.compareJSON(json1, json2);
+            }
+            else
+                return false;
+        }else{
+            return response1.getResponse().equals(response2.getResponse());
         }
+
     }
 
     @Override

@@ -7,9 +7,16 @@ import java.io.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+/*
+Main class to execute the files
+ */
 public class ProgramExecutor {
 
     public void execute(File file1, File file2) {
+
+        //Here the thread pool size is defined as 20 due to network limitations. it can be changed
+        //to more threads, if the network permits. in my testing i found 20 threads to be reliable
+        // for a decent connection.
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(20);
         BufferedReader first = null, second = null;
         try {
